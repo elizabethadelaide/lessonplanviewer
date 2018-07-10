@@ -1,4 +1,5 @@
-##Lesson plan viewer
+[!Screenshot of lesson](/curriculumscreenshot.png)
+## Lesson plan viewer
 
 I created this as part of lesson prep for a large class. I needed to separate the content and presentation. The content is held on a google drive spreadsheet.
 
