@@ -1,0 +1,110 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html ng-app="eduApp" lang="en">
+  <head>
+    <title>SBS Curriculum</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body ng-controller="bodyCtl">
+    
+    <!--<header>
+    Duro Workforce, CNC Machinist Curriculumn
+    </header>-->
+    
+    <!--<div id="nav">
+      <ul>
+        <li><button ng-style="navStyle(0)" ng-click="toggleNav(0)">Daily Breakdown</button></li>
+        <li><button ng-style="navStyle(1)" ng-click="toggleNav(1)">Syllabus</button></li>
+        <li><button ng-style="navStyle(2)" ng-click="toggleNav(2)">Schedules</button></li>
+        <li><button ng-style="navStyle(3)" ng-click="toggleNav(3)">Assignments</button></li>
+      </ul>
+    </div>-->
+    
+    <h1>
+      Curriculum
+    </h1>
+    
+    <div class="weekDiv" ng-repeat="(key, value) in sheet | groupBy:'Week'">
+      <h1 class="clickable" ng-click="toggleWeek(key)">
+        Week {{key | weekFilter}}
+      </h1>
+      
+      <div class="dayDiv" ng-if="showDay(key)" ng-repeat="group in value | groupBy: 'Day' | toArray:true">
+        
+        
+        <h2 ng-style="dayStyle(group.$key)">
+          {{group.$key | dayFilter}}
+        </h2>
+        
+        <div ng-if="showSched()" class="schedDiv">
+          {{group | schedFilter}}
+        </div>
+      <div math ng-style="wrapContent()" vertilize-container ng-if="show(line)" class="lessonDiv" ng-repeat="line in group | orderBy: 'Order'">
+        <div vertilize class="lengthBar" ng-style="dayBar(line)">
+         
+        </div>  
+        <div vertilize class="lessonHeader">
+        <h3 ng-style="dayStyle(line.Day)">
+            {{line | lessonHeader}}
+        </h3>
+        <p>
+          Instructors: {{line.Instructor}}
+        </p>
+        <p>
+          {{line.Type}}: {{line.Summary}}
+        </p>
+        <div math>
+        
+        <ul>
+          <li ng-repeat="(key, value) in getDetails(line.ID)" ng-if="showDetail(value, key)">{{value | detailFilter:key}}</li>
+        </ul>
+        <p class="lessonDescription">
+          {{getDetails(line.ID).Description}}
+        </p>
+        </div>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+
+    <!-- import the webpage's client-side javascript file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+            ></script>
+    
+
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter.js"></script>
+    <script src="/angular-vertilize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML" async></script>
+    <script>
+    MathJax.Hub.Config({
+  jax: ["input/TeX","input/MathML","input/AsciiMath","output/CommonHTML"],
+  extensions: ["tex2jax.js","mml2jax.js","asciimath2jax.js","MathMenu.js","MathZoom.js","AssistiveMML.js", "a11y/accessibility-menu.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+    </script>
+    <script src="/client.js"></script>
+
+
+
+  </body>
+</html>
