@@ -1,4 +1,4 @@
-![Screenshot of lesson](/curriculumscreenshot.png)
+
 
 ## Lesson plan viewer
 
@@ -11,3 +11,4 @@ A major issue was creating a watcher on the mathjax queue so that the divs would
 A sample curriculum can be viewed here: https://lessonviewangular.glitch.me/
 
 
+![Screenshot of lesson](/curriculumscreenshot.png)
